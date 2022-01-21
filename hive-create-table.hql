@@ -290,7 +290,7 @@ CREATE TABLE IF NOT EXISTS internetsales (
 stored as parquet
 location '/user/root/internetsales';
 
-
+set hive.auto.convert.join = false;
 INSERT overwrite TABLE dimproduct
 SELECT ProductKey,
   ProductAlternateKey,
