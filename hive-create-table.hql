@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS dimcurrency (
   CurrencyName string
 ) 
 stored as textfile
-location '/user/root/dimcurrency/part-m-00000';
+location '/user/root/dimcurrency';
 
 CREATE TABLE IF NOT EXISTS dimcustomer (
   CustomerKey int,
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS dimcustomer (
   CommuteDistance string
 ) 
 stored as textfile
-location '/user/root/dimcustomer/part-m-00000';
+location '/user/root/dimcustomer';
 
 CREATE TABLE IF NOT EXISTS tmpcustomer (
   CustomerKey int,
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS tmpcustomer (
   CommuteDistance string
 ) 
 stored as textfile
-location '/user/root/customer/part-m-00000';
+location '/user/root/customer';
 
 CREATE TABLE IF NOT EXISTS dimdate (
   DateKey int,
@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS dimdate (
   FiscalSemester tinyint
 ) 
 stored as textfile
-location '/user/root/dimdate/part-m-00000';
+location '/user/root/dimdate';
 
 
 CREATE TABLE IF NOT EXISTS dimgeography (
@@ -116,7 +116,7 @@ CREATE TABLE IF NOT EXISTS dimgeography (
   SalesTerritoryKey int
 ) 
 stored as textfile
-location '/user/root/dimgeography/part-m-00000';
+location '/user/root/dimgeography';
 
 CREATE TABLE IF NOT EXISTS dimproduct (
   ProductKey int,
@@ -158,7 +158,7 @@ CREATE TABLE IF NOT EXISTS dimproduct (
   Status string
   )
 stored as textfile
-location '/user/root/dimproduct/part-m-00000';
+location '/user/root/dimproduct';
 
 CREATE TABLE IF NOT EXISTS tmpproduct (
   ProductKey int,
@@ -199,7 +199,7 @@ CREATE TABLE IF NOT EXISTS tmpproduct (
   Status string
   )
 stored as textfile
-location '/user/root/product/part-m-00000';
+location '/user/root/product';
 
 CREATE TABLE IF NOT EXISTS dimproductcategory (
   ProductCategoryKey int,
@@ -209,7 +209,7 @@ CREATE TABLE IF NOT EXISTS dimproductcategory (
   FrenchProductCategoryName string
 )
 stored as textfile
-location '/user/root/dimproductcategory/part-m-00000';
+location '/user/root/dimproductcategory';
 
 CREATE TABLE IF NOT EXISTS dimproductsubcategory (
   ProductSubcategoryKey int,
@@ -220,7 +220,7 @@ CREATE TABLE IF NOT EXISTS dimproductsubcategory (
   ProductCategoryKey int
 ) 
 stored as textfile
-location '/user/root/dimproductsubcategory/part-m-00000';
+location '/user/root/dimproductsubcategory';
 
 CREATE TABLE IF NOT EXISTS dimsalesterritory (
   SalesTerritoryKey int,
@@ -230,7 +230,7 @@ CREATE TABLE IF NOT EXISTS dimsalesterritory (
   SalesTerritoryGroup string
 ) 
 stored as textfile
-location '/user/root/dimsalesterritory/part-m-00000';
+location '/user/root/dimsalesterritory';
 
 
 CREATE TABLE IF NOT EXISTS factinternetsales (
@@ -259,7 +259,7 @@ CREATE TABLE IF NOT EXISTS factinternetsales (
   CustomerPONumber string
 )
 stored as textfile
-location '/user/root/factinternetsales/part-m-00000';
+location '/user/root/factinternetsales';
 
 
 CREATE TABLE IF NOT EXISTS internetsales (
@@ -288,7 +288,7 @@ CREATE TABLE IF NOT EXISTS internetsales (
   CustomerPONumber string
 )
 stored as textfile
-location '/user/root/internetsales/part-m-00000';
+location '/user/root/internetsales';
 
 set hive.auto.convert.join = false;
 INSERT overwrite TABLE dimproduct
