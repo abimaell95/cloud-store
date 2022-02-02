@@ -7,7 +7,9 @@ CREATE TABLE IF NOT EXISTS dimcurrency (
   CurrencyAlternateKey string,
   CurrencyName string
 ) 
-ROW FORMAT DELIMITED FIELDS TERMINATED BY "," STORED AS TEXTFILE
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ","
+STORED AS TEXTFILE
 location '/user/root/dimcurrency';
 
 CREATE TABLE IF NOT EXISTS dimcustomer (
@@ -41,7 +43,9 @@ CREATE TABLE IF NOT EXISTS dimcustomer (
   DateFirstPurchase date,
   CommuteDistance string
 ) 
-ROW FORMAT DELIMITED FIELDS TERMINATED BY "," STORED AS TEXTFILE
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ","
+STORED AS TEXTFILE
 location '/user/root/dimcustomer';
 
 CREATE TABLE IF NOT EXISTS tmpcustomer (
@@ -75,7 +79,9 @@ CREATE TABLE IF NOT EXISTS tmpcustomer (
   DateFirstPurchase bigint,
   CommuteDistance string
 ) 
-ROW FORMAT DELIMITED FIELDS TERMINATED BY "," STORED AS TEXTFILE
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ","
+STORED AS TEXTFILE
 location '/user/root/customer';
 
 CREATE TABLE IF NOT EXISTS dimdate (
@@ -99,7 +105,9 @@ CREATE TABLE IF NOT EXISTS dimdate (
   FiscalYear smallint,
   FiscalSemester tinyint
 ) 
-ROW FORMAT DELIMITED FIELDS TERMINATED BY "," STORED AS TEXTFILE
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ","
+STORED AS TEXTFILE
 location '/user/root/dimdate';
 
 
@@ -115,7 +123,9 @@ CREATE TABLE IF NOT EXISTS dimgeography (
   PostalCode varchar(15),
   SalesTerritoryKey int
 ) 
-ROW FORMAT DELIMITED FIELDS TERMINATED BY "," STORED AS TEXTFILE
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ","
+STORED AS TEXTFILE
 location '/user/root/dimgeography';
 
 CREATE TABLE IF NOT EXISTS dimproduct (
@@ -157,7 +167,9 @@ CREATE TABLE IF NOT EXISTS dimproduct (
   EndDate bigint,
   Status string
   )
-ROW FORMAT DELIMITED FIELDS TERMINATED BY "," STORED AS TEXTFILE
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ","
+STORED AS TEXTFILE
 location '/user/root/dimproduct';
 
 CREATE TABLE IF NOT EXISTS tmpproduct (
@@ -198,7 +210,9 @@ CREATE TABLE IF NOT EXISTS tmpproduct (
   EndDate bigint,
   Status string
   )
-ROW FORMAT DELIMITED FIELDS TERMINATED BY "," STORED AS TEXTFILE
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ","
+STORED AS TEXTFILE
 location '/user/root/product';
 
 CREATE TABLE IF NOT EXISTS dimproductcategory (
@@ -208,7 +222,9 @@ CREATE TABLE IF NOT EXISTS dimproductcategory (
   SpanishProductCategoryName string,
   FrenchProductCategoryName string
 )
-ROW FORMAT DELIMITED FIELDS TERMINATED BY "," STORED AS TEXTFILE
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ","
+STORED AS TEXTFILE
 location '/user/root/dimproductcategory';
 
 CREATE TABLE IF NOT EXISTS dimproductsubcategory (
@@ -219,7 +235,9 @@ CREATE TABLE IF NOT EXISTS dimproductsubcategory (
   FrenchProductSubcategoryName string,
   ProductCategoryKey int
 ) 
-ROW FORMAT DELIMITED FIELDS TERMINATED BY "," STORED AS TEXTFILE
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ","
+STORED AS TEXTFILE
 location '/user/root/dimproductsubcategory';
 
 CREATE TABLE IF NOT EXISTS dimsalesterritory (
@@ -229,7 +247,9 @@ CREATE TABLE IF NOT EXISTS dimsalesterritory (
   SalesTerritoryCountry string,
   SalesTerritoryGroup string
 ) 
-ROW FORMAT DELIMITED FIELDS TERMINATED BY "," STORED AS TEXTFILE
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ","
+STORED AS TEXTFILE
 location '/user/root/dimsalesterritory';
 
 
@@ -258,7 +278,9 @@ CREATE TABLE IF NOT EXISTS factinternetsales (
   CarrierTrackingNumber string,
   CustomerPONumber string
 )
-ROW FORMAT DELIMITED FIELDS TERMINATED BY "," STORED AS TEXTFILE
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ","
+STORED AS TEXTFILE
 location '/user/root/factinternetsales';
 
 
@@ -287,10 +309,16 @@ CREATE TABLE IF NOT EXISTS internetsales (
   CarrierTrackingNumber string,
   CustomerPONumber string
 )
-ROW FORMAT DELIMITED FIELDS TERMINATED BY "," STORED AS TEXTFILE
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ","
+STORED AS TEXTFILE
 location '/user/root/internetsales';
 
-set hive.auto.convert.join = false;
+SET hive.exec.dynamic.partition = true;
+SET hive.exec.dynamic.partition.mode = nonstrict;
+SET hive.exec.max.dynamic.partitions = 10000;
+SET hive.exec.max.dynamic.partitions.pernode = 1000; 
+
 INSERT overwrite TABLE dimproduct
 SELECT ProductKey,
   ProductAlternateKey,
